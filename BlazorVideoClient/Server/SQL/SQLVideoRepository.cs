@@ -52,6 +52,8 @@ namespace BlazorVideoClient.Server.SQL
 
         public async Task<IEnumerable<Video>> Search(string searchKey)
         {
+            Enum.TryParse(searchKey, out SkillLevel SearchSkillLevel);
+
             IQueryable<Video> query = _context.Videos;
 
             if (string.IsNullOrWhiteSpace(searchKey))
@@ -62,7 +64,8 @@ namespace BlazorVideoClient.Server.SQL
             return await query.Where(c => c.Author.Contains(searchKey) ||
                               c.Description.Contains(searchKey) ||
                               c.Title.Contains(searchKey) || c.YoutubeVid.Contains(searchKey) ||
-                              c.Category.CategoryName.Contains(searchKey)).ToListAsync();
+                              c.Category.CategoryName.Contains(searchKey) ||
+                              c.Level.Equals(SearchSkillLevel)).ToListAsync();
         }
 
         public async Task<Video> UpdateEntity(Video updatedEntity)
