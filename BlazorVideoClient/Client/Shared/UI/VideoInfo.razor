@@ -1,0 +1,55 @@
+﻿
+<div class="border" style="width: 30%">
+    <div class="card-header text-center">
+        <h3>Video Detail</h3>
+    </div>
+    <div class="card-body">
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>Title : </strong>@Video.Title</td>
+                </tr>
+                <tr>
+                    <td><strong>Author : </strong>@Video.Author</td>
+                </tr>
+                <tr>
+                    <td><strong>Detail : </strong>@Video.Description</td>
+                </tr>
+                <tr>
+                    <td><strong>Youtube ID : </strong>@Video.YoutubeVid</td>
+                </tr>
+                <tr>
+                    <td><strong>StarsCount : </strong>@Video.StarsCount</td>
+                </tr>
+                <tr>
+                    <td><strong>Level : </strong>@Video.Level</td>
+                </tr>
+                <tr>
+                    <td><strong>IsActive : </strong>@Video.IsActive</td>
+                </tr>                
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-outline-danger btn-block" @onclick="DeleteClick" style="font-weight: bold">
+            Delete
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-block" @onclick="BackToList" style="font-weight: bold">
+            Back to List
+        </button>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public VideoView Video { get; set; } = new();
+
+    [Parameter]
+    public EventCallback DeleteClick { get; set; }
+
+    [Parameter]
+    public EventCallback BackToList { get; set; }
+
+
+}

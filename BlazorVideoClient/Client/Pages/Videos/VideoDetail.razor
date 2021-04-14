@@ -1,0 +1,14 @@
+﻿@page "/videoDetail/{Id:int}"
+@inherits VideoDetailBase
+
+    <div class="border">
+        <div class="card-header">
+            <h4>@Video.Title</h4>
+        </div>
+        <div class="card-body">
+            <!-- Standard YouTube embed, with width= and height= removed. -->
+            <iframe src="https://www.youtube.com/embed/@Video.YoutubeVid" frameborder="0" allow="autoplay; encrypted-media"
+                    allowfullscreen></iframe>
+        </div>
+        <div class="card-footer">Back to List</div>
+    </div>

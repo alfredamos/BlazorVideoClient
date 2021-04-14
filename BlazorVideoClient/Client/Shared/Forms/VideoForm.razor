@@ -1,0 +1,89 @@
+﻿
+
+<div class="border" style="width: 50%">
+    <div class="card-header text-center">
+        <h1>Category Form</h1>
+    </div>
+    <div class="card-body">
+        <EditForm Model="Video">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group">
+                <label for="Author" class="form-label">Author</label>
+                <InputText @bind-Value="Video.Author" class="form-control" placeholder="Author Name" />
+                <ValidationMessage For="@(() => Video.Author)" />
+            </div>
+            <div class="form-group">
+                <label for="Title" class="form-label">Title</label>
+                <InputText @bind-Value="Video.Title" class="form-control" placeholder="Title" />
+                <ValidationMessage For="@(() => Video.Title)" />
+            </div>
+            <div class="form-group">
+                <label for="Description" class="form-label">Description</label>
+                <InputTextArea @bind-Value="Video.Description" class="form-control" placeholder="Description" />
+                <ValidationMessage For="@(() => Video.Description)" />
+            </div>
+            <div class="form-group">
+                <label for="YoutubeVid" class="form-label">Youtube Id</label>
+                <InputText @bind-Value="Video.YoutubeVid" class="form-control" placeholder="Youtube Id" />
+                <ValidationMessage For="@(() => Video.YoutubeVid)" />
+            </div>
+            <div class="form-group">
+                <label for="StarsCount" class="form-label">Stars Count</label>
+                <InputNumber @bind-Value="Video.StarsCount" class="form-control" placeholder="Starts Count" />
+                <ValidationMessage For="@(() => Video.StarsCount)" />
+            </div>
+            <div class="form-group">
+                <label for="CategoryID" class="form-label">Category</label>
+                <CustomInputSelect @bind-Value="Video.CategoryID" class="form-control">
+                    <option>Select Category</option>
+                    @foreach (var category in Categories)
+                    {
+                        <option value="@category.CategoryID">@category.CategoryName</option>
+                    }
+                </CustomInputSelect>
+            </div>
+            <div class="form-group">
+                <label for="SkillLevel" class="form-label">Skill Level</label>
+                <InputSelect @bind-Value="Video.Level" class="form-control" placeholder="Select Skill Level">
+                    <option>Select Skill Level</option>
+                    @foreach (var level in Enum.GetValues(typeof(SkillLevel)))
+                    {
+                        <option value="@level">@level</option>
+                    }
+                </InputSelect>
+            </div>
+            <div class="form-group">
+                <label for="IsActive" class="form-label">IsActive</label>
+                <InputCheckbox @bind-Value="Video.IsActive" class="form-control" placeholder="IsActive" />
+                <ValidationMessage For="@(() => Video.IsActive)" />
+            </div>
+        </EditForm>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button type="button" @onclick="UpsertVideo" class="btn btn-outline-success btn-block" style="font-weight: bold">@UpsertButton</button>
+            <button type="button" @onclick="CancelMethod" class="btn btn-outline-primary btn-block" style="font-weight: bold">@CancelButton</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public VideoView Video { get; set; } = new();
+
+    [Parameter]
+    public List<CategoryView> Categories { get; set; }
+
+    [Parameter]
+    public EventCallback UpsertVideo { get; set; }
+
+    [Parameter]
+    public EventCallback CancelMethod { get; set; }
+
+    [Parameter]
+    public string UpsertButton { get; set; }
+
+    [Parameter]
+    public string CancelButton { get; set; }
+}

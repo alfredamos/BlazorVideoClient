@@ -1,0 +1,67 @@
+﻿@page "/videoList"
+@inherits VideoListBase
+
+<div class="border">
+    <div class="card-header text-center">
+        <h4><strong>Videos</strong></h4>
+        <p>
+            <strong>
+                Click any row's edit icon to edit that video
+            </strong>
+        </p>
+    </div>
+    <div class="card-body">
+        <SearchItem OnSearchItem="HandleSearch"/>
+        <table class="videos">
+            <thead>
+                <tr>
+                    <th>
+                        Edit
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Author
+                    </th>
+                    <th>
+                        Rating
+                    </th>
+                    <th>
+                        Remove
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var video in Videos)
+                {
+                <tr>
+                    <td>
+                        <a style="color:orange" href="@($"/editVideo/{video.VideoID}")" class="fa fa-edit"><i class="oi oi-pencil"></i></a>
+                    </td>
+                    <td style="text-decoration:@(video.IsActive ? "none" : "line-through")">
+                        <a href="@($"/videoDetail/{video.VideoID}")">@video.Title</a>
+                    </td>
+                    <td>
+                        @video.Author
+                    </td>
+                    <td>
+                        <div style="width: calc(20% * @video.StarsCount)"></div>
+                        <img src="/images/stars.png" alt="@video.StarsCount"
+                             title="@video.StarsCount">
+                    </td>
+                    <td>
+                        <a style="color:red" href="@($"/deleteVideo/{video.VideoID}")"><i class="oi oi-delete"></i></a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card-footer">
+    <a class="btn btn-primary btn-block" href="/addVideo">
+        click here to add a new
+        video
+    </a>.
+</div>

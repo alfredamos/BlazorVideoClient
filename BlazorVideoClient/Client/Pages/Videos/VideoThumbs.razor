@@ -1,0 +1,25 @@
+﻿@page "/videoThumbs"
+@inherits VideoThumbsBase
+
+<div class="border">
+    <div class="card-header text-center">
+        <h4><strong>Videos</strong></h4>
+        <p><strong>Click any thumbnail to watch its video</strong></p>
+    </div>
+    <div class="card-body">       
+        <div class="videothumbs">
+            @foreach (var video in Videos)
+            {
+                <a href="@($"/videoDetail/{video.VideoID}")">
+                    <img src="http://i3.ytimg.com/@video.YoutubeVid/mqdefault.jpg" alt="@video.Title" title="@video.Title : @video.Description">
+                </a>
+            }
+        </div>
+    </div>
+</div>
+<div class="card-footer">
+    <a class="btn btn-primary btn-block" href="/addVideo">
+        click here to add a new
+        video
+    </a>.
+</div>

@@ -1,0 +1,9 @@
+﻿@page "/deleteVideo/{Id:int}"
+@inherits DeleteVideoBase
+
+
+<VideoInfo Video="Video" BackToList="Cancel" DeleteClick="DeleteClick" />
+
+
+<ConfirmDelete @ref="DeleteConfirmation" ConfirmationChanged="DeleteVideo" ConfirmationMessage="@($"Are you sure you want to delete {Video.Title} ?")"
+               ConfirmationTitle="Video Delete Confirmation" />

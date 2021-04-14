@@ -1,0 +1,6 @@
+﻿@page "/editVideo/{Id:int}"
+@inherits EditVideoBase
+
+
+<VideoForm Categories="Categories" Video="Video" UpsertVideo="UpdateVideo"
+           CancelMethod="Cancel" UpsertButton="Save" CancelButton="Cancel" />
